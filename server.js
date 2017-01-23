@@ -14,52 +14,26 @@ app.get('/', function (req, res) {
   res.render('home');
 })
 
-// Result
-app.get('/:id', function (req, res) {
-  id = req.params.id;
+// Who Am I, result page
+app.get('/whoami', function (req, res) {
   var result = {};
-  if (Date.parse(id) || +id) {
-    function naturalTimeFormat(date) {
-      d = new Date(date * 1000);
-      var monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ];
-      var str = monthNames[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-      return str;
-    }
-    console.log('Date.parse(id)', Date.parse(id));
-    console.log('Boolean Date.parse(id)', Boolean(Date.parse(id)));
-    var naturalTime = (Date.parse(id) > 0) ? id : naturalTimeFormat(id);
-    var unixTime = (+id) ? id : Date.parse(id) / 1000;
-    result = {
-      "UNIX": unixTime,
-      "natural": naturalTime
-    }
-    result = JSON.stringify(result);
-    res.render('result', {
-      result: result
-    });
-  } else {
-    result = {
-      "UNIX": null,
-      "natural": null
-    }
-    result = JSON.stringify(result);
-    res.render('result', {
-      result: result
-    });
+  console.log(req.headers)
+  var IP = req.headers.host;
+  var language = req.headers["accept-language"].slice(0, 5);
+  var regexp = /\((.*?)\)/;
+  var software = req.headers["user-agent"].match(regexp)[1];
+  
+  console.log(typeof language);
+  result = {
+    IP,
+    language,
+    software
   }
-
-})
-
-// Get headers page
-app.get('/headers', function (req, res) {
-  res.set('Content-Type', 'text/plan');
-  var s = '';
-  for (var name in req.headers) {
-    s += name + ': ' + req.headers[name] + '\n';
-  }
-  res.send(s);
+  result = JSON.stringify(result);
+  console.log(result);
+  res.render('result', {
+    result: result
+  });
 })
 
 // Custom 404 page

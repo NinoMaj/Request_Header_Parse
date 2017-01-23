@@ -1,7 +1,7 @@
 {
-  "name": "timestamp",
+  "name": "request_header_parse",
   "version": "1.0.0",
-  "description": "timestamp FCC challance",
+  "description": "Request headers parse mircoservice, FCC challange",
   "main": "index.js",
   "scripts": {
     "test": "test",

@@ -1,10 +1,10 @@
 /*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
 
 html {
-    color: #fff;
+    color: #000;
     font-size: 1em;
     line-height: 1.4;
-    background-color: #BC2054;
+    background-color: #F7DAB0;
 }
 
 ::-moz-selection {
@@ -157,7 +157,7 @@ nav a:hover {
 
 
 .exampleLinks {
-    color: white;
+    color: 000;
 }
 
 
